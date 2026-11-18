@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff1f5">
+<title>for my favourite human ♡</title>
+
+<style>
+:root{
+--pink:#f7dce5;
+--blush:#fff1f5;
+--rose:#d989a4;
+--deep:#754457;
+--wine:#9d536f;
+--cream:#fffaf7;
+--text:#593e4a;
+--muted:#a47d8b
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;background:var(--blush);color:var(--text);
+font-family:Georgia,serif;overflow-x:hidden
+}
+button{font:inherit;cursor:pointer}
+#hearts{
+position:fixed;inset:0;pointer-events:none;
+z-index:10;overflow:hidden
+}
+.heart{
+position:absolute;bottom:-30px;color:#dc9bb0;
+animation:floatUp 7s linear forwards;opacity:.65
+}
+@keyframes floatUp{
+to{transform:translateY(-110vh) rotate(35deg);opacity:0}
+}
+.screen{
+min-height:100svh;display:grid;place-items:center;
+padding:28px 18px;position:relative;overflow:hidden
+}
+.screen:before,.screen:after{
+content:"";position:absolute;width:270px;height:270px;
+border-radius:50%;filter:blur(4px);opacity:.45;
+pointer-events:none
+}
+.screen:before{background:#f6c9d8;top:-120px;left:-100px}
+.screen:after{background:#f8d8e2;right:-120px;bottom:-120px}
+.hero-card{
+position:relative;z-index:1;width:min(570px,100%);
+text-align:center;padding:clamp(30px,7vw,62px) 25px;
+background:rgba(255,250,249,.78);
+border:1px solid #f1d6df;border-radius:34px;
+box-shadow:0 22px 70px rgba(161,99,124,.12)
+}
+.tiny{
+font:10px Arial,sans-serif;letter-spacing:2.5px;
+text-transform:uppercase;color:var(--muted)
+}
+h1{
+font-size:clamp(48px,12vw,82px);font-weight:normal;
+line-height:1;margin:24px 0 14px;color:var(--deep)
+}
+h2{
+font-size:clamp(34px,8vw,55px);font-weight:normal;
+line-height:1.08;margin:12px 0 18px;color:var(--deep)
+}
+p{line-height:1.8}
+.sub{
+color:#987484;font-size:16px;max-width:390px;
+margin:0 auto 26px
+}
+.btn{
+border:0;border-radius:999px;padding:14px 23px;
+background:var(--wine);color:white;
+font:11px Arial,sans-serif;letter-spacing:1.5px;
+text-transform:uppercase;box-shadow:0 8px 20px #d9a5b7
+}
+.btn.alt{
+background:#f5dce5;color:var(--deep);
+box-shadow:none;border:1px solid #e9c4d1
+}
+.btn:active{transform:scale(.98)}
+.small-note{
+font:11px Arial,sans-serif;color:#b18b99;margin-top:18px
+}
+.content{width:min(680px,92%);margin:auto;padding:75px 0}
+.center{text-align:center}
+.pill{
+display:inline-block;background:#f8dfe7;border-radius:99px;
+padding:8px 13px;font:10px Arial,sans-serif;
+letter-spacing:1.5px;color:var(--wine);text-transform:uppercase
+}
+.bubble{
+background:#fffaf8;border:1px solid #f1dce3;
+border-radius:22px 22px 22px 5px;padding:18px 20px;
+margin:14px 0;box-shadow:0 8px 25px rgba(166,104,129,.06);
+max-width:92%;opacity:0;transform:translateY(12px);
+transition:.6s
+}
+.bubble.show{opacity:1;transform:none}
+.bubble.me{
+margin-left:auto;border-radius:22px 22px 5px 22px;
+background:#f8e1e8
+}
+.bubble small{
+display:block;color:#b48696;font:9px Arial,sans-serif;
+letter-spacing:1px;text-transform:uppercase;margin-bottom:7px
+}
+.bubble p{margin:0;font-size:17px;line-height:1.65}
+.story{display:grid;gap:13px;margin-top:30px}
+.memory{
+padding:20px 22px;background:#fffaf8;
+border-radius:18px;border:1px solid #f1dce3
+}
+.memory span{
+font:10px Arial,sans-serif;letter-spacing:1.7px;
+text-transform:uppercase;color:var(--wine)
+}
+.memory h3{font-weight:normal;font-size:23px;margin:8px 0}
+.memory p{
+font:14px/1.75 Arial,sans-serif;color:#8a6d79;margin:0
+}
+.grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:12px;margin-top:25px
+}
+.flip{
+min-height:120px;border:1px solid #efcfda;
+background:#fff9f8;border-radius:18px;padding:16px;
+color:var(--deep);text-align:left;transition:.2s
+}
+.flip strong{font-size:15px;font-weight:normal;display:block}
+.flip span{
+display:block;font:12px/1.5 Arial,sans-serif;
+color:#9b7785;margin-top:10px
+}
+.quizbox{
+background:#fffaf8;border-radius:24px;padding:25px;
+border:1px solid #f1dce3
+}
+.answers{display:grid;gap:9px;margin-top:18px}
+.answer{
+padding:13px;border:1px solid #eacbd6;background:#fff;
+color:var(--deep);border-radius:13px;text-align:left;
+font:13px Arial,sans-serif
+}
+.answer:hover{background:#fbe8ee}
+.feedback{
+min-height:30px;color:var(--wine);
+font-style:italic;margin-top:14px
+}
+.songlist{display:grid;gap:9px;margin-top:22px}
+.song{
+display:flex;justify-content:space-between;gap:10px;
+align-items:center;background:#fffaf8;padding:14px 16px;
+border-radius:15px;border:1px solid #f1dce3
+}
+.song b{font-size:16px;font-weight:normal}
+.song small{
+display:block;font:11px Arial,sans-serif;
+color:#a0808c;margin-top:4px
+}
+.song a{
+font:10px Arial,sans-serif;color:var(--wine);
+text-decoration:none;white-space:nowrap
+}
+.envelope{
+width:180px;height:120px;background:#f4cbd8;
+border:1px solid #df9eb4;border-radius:12px;
+position:relative;margin:30px auto;display:grid;
+place-items:center;color:#8c4c64;font-size:35px;
+box-shadow:0 10px 25px #e8c3d0;transition:.3s
+}
+.envelope:before{
+content:"";position:absolute;inset:0;
+background:
+linear-gradient(145deg,transparent 49%,#e8b5c6 50%,transparent 51%),
+linear-gradient(215deg,transparent 49%,#e8b5c6 50%,transparent 51%);
+border-radius:12px
+}
+.envelope:hover{transform:translateY(-5px) rotate(-2deg)}
+.reveal{
+display:none;background:#fffaf8;border-radius:20px;
+padding:22px;max-width:500px;margin:15px auto;
+border:1px solid #f0d4de;line-height:1.8
+}
+.reveal.show{display:block;animation:pop .4s ease}
+@keyframes pop{
+from{opacity:0;transform:scale(.96)}
+to{opacity:1;transform:scale(1)}
+}
+footer{
+text-align:center;padding:50px 15px 65px;
+color:#a27e8c;font:10px Arial,sans-serif;letter-spacing:2px
+}
+.divider{text-align:center;color:#d79bb0;letter-spacing:10px;margin:15px}
+@media(max-width:500px){
+.grid{grid-template-columns:1fr}
+.content{padding:58px 0}
+.bubble p{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+<div id="hearts"></div>
+
+<section class="screen" id="start">
+<div class="hero-card">
+<div class="tiny">a tiny website · made for one specific person</div>
+<h1>hey, Adii. ♡</h1>
+<p class="sub">
+I made you a little corner of the internet.
+It's pink. It's embarrassing. It's very you-and-me coded.
+</p>
+<button class="btn" onclick="enterSite()">come inside, bhondu →</button>
+<div class="small-note">P.S. yes, this is your five-month gift. behave.</div>
+</div>
+</section>
+
+<main id="main" style="display:none">
+
+<section class="content center">
+<span class="pill">19 November 2026 · five months</span>
+<h2>five months of <i>us.</i></h2>
+<p style="color:#987484">
+And somehow, I still have approximately 947 things to tell you.
+</p>
+<div class="divider">♡ · ♡ · ♡</div>
+<button class="btn alt" onclick="showMessages()">tap here. I have things to say.</button>
+
+<div id="messages" style="margin-top:28px;text-align:left">
+<div class="bubble">
+<small>message 01</small>
+<p>First of all, happy five months, Buddy. Look at us. Five whole months. Who gave us permission to be this cute?</p>
+</div>
+<div class="bubble me">
+<small>message 02</small>
+<p>Second, I hope you know that you have become part of so many tiny corners of my everyday life.</p>
+</div>
+<div class="bubble">
+<small>message 03</small>
+<p>And third, I still think you're ridiculously special. Even when you're being the most unserious human alive.</p>
+</div>
+<div class="bubble me">
+<small>message 04</small>
+<p>Okay that's enough softness for now. Don't let it get to your head, 2foot.</p>
+</div>
+</div>
+</section>
+
+<section class="content">
+<div class="center">
+<span class="pill">our little timeline</span>
+<h2>from that green jacket<br>to <i>this.</i></h2>
+<p style="color:#987484">
+Somewhere between then and now, you became my favourite plot twist.
+</p>
+</div>
+
+<div class="story">
+<article class="memory">
+<span>2019 · the first page</span>
+<h3>The green jacket era</h3>
+<p>Who would've thought that one random first impression would turn into a story with this many chapters?</p>
+</article>
+
+<article class="memory">
+<span>2024 · the unexpected start</span>
+<h3>One conversation became many</h3>
+<p>A random conversation, late-night talks, and a friendship that slowly started feeling like its own little world.</p>
+</article>
+
+<article class="memory">
+<span>19 June 2026 · the plot twist</span>
+<h3>So… it's us?</h3>
+<p>12:59 AM. The beginning of something we had no idea would mean this much.</p>
+</article>
+
+<article class="memory">
+<span>November 2026 · current episode</span>
+<h3>Five months later</h3>
+<p>New routines, a little more distance, the same two idiots. Still writing the story.</p>
+</article>
+</div>
+</section>
+
+<section class="content center">
+<span class="pill">a few things i adore</span>
+<h2>you, in little details.</h2>
+<p style="color:#987484">Tap the cards. No skipping, mister.</p>
+
+<div class="grid">
+<button class="flip" onclick="flip(this)">
+<strong>your eyes ♡</strong>
+<span hidden>I'm not even going to pretend I don't get lost in them.</span>
+</button>
+
+<button class="flip" onclick="flip(this)">
+<strong>that smile ♡</strong>
+<span hidden>It has no business being this memorable.</span>
+</button>
+
+<button class="flip" onclick="flip(this)">
+<strong>your voice notes ♡</strong>
+<span hidden>Little pieces of your day that I get to keep coming back to.</span>
+</button>
+
+<button class="flip" onclick="flip(this)">
+<strong>our nonsense ♡</strong>
+<span hidden>Buddy, Bhondu, Adii, 2foot. A whole dictionary and somehow still not enough.</span>
+</button>
+
+<button class="flip" onclick="flip(this)">
+<strong>your random updates ♡</strong>
+<span hidden>I love being included in the tiny, ordinary bits of your day.</span>
+</button>
+
+<button class="flip" onclick="flip(this)">
+<strong>just you ♡</strong>
+<span hidden>Not a perfect version. Not a made-up version. You.</span>
+</button>
+</div>
+</section>
+
+<section class="content">
+<div class="center">
+<span class="pill">important research</span>
+<h2>how well do you<br>know your girl?</h2>
+<p style="color:#987484">
+A very serious examination. Your future depends on absolutely nothing.
+</p>
+</div>
+
+<div class="quizbox">
+<div class="tiny" id="qcount">QUESTION 01 / 03</div>
+<h3 id="question" style="font-weight:normal;font-size:23px">
+What's my favourite kind of conversation?
+</h3>
+<div class="answers" id="answers">
+<button class="answer" onclick="choose(0)">Deep talks at 2 AM</button>
+<button class="answer" onclick="choose(1)">Random gossip that has no business being this detailed</button>
+<button class="answer" onclick="choose(2)">Both. Obviously.</button>
+</div>
+<div class="feedback" id="feedback"></div>
+<button class="btn alt" id="next" style="display:none" onclick="nextQuestion()">next question →</button>
+</div>
+</section>
+
+<section class="content">
+<div class="center">
+<span class="pill">background music for us</span>
+<h2>our little soundtrack.</h2>
+<p style="color:#987484">
+Five songs for five months. Pick one and think of me, okay?
+</p>
+</div>
+
+<div class="songlist">
+<div class="song">
+<div><b>Heeriye</b><small>Jasleen Royal ft. Arijit Singh · soft and warm</small></div>
+<a href="https://open.spotify.com/search/Heeriye%20Jasleen%20Royal" target="_blank">PLAY ↗</a>
+</div>
+<div class="song">
+<div><b>I Like Me Better</b><small>Lauv · the giddy kind of happy</small></div>
+<a href="https://open.spotify.com/search/I%20Like%20Me%20Better%20Lauv" target="_blank">PLAY ↗</a>
+</div>
+<div class="song">
+<div><b>Kho Gaye Hum Kahan</b><small>Jasleen Royal, Prateek Kuhad · a little nostalgia</small></div>
+<a href="https://open.spotify.com/search/Kho%20Gaye%20Hum%20Kahan" target="_blank">PLAY ↗</a>
+</div>
+<div class="song">
+<div><b>Until I Found You</b><small>Stephen Sanchez · old-school soft feelings</small></div>
+<a href="https://open.spotify.com/search/Until%20I%20Found%20You" target="_blank">PLAY ↗</a>
+</div>
+<div class="song">
+<div><b>Husn</b><small>Anuv Jain · for the quiet moments</small></div>
+<a href="https://open.spotify.com/search/Husn%20Anuv%20Jain" target="_blank">PLAY ↗</a>
+</div>
+</div>
+</section>
+
+<section class="content center">
+<span class="pill">one last thing</span>
+<h2>before you go…</h2>
+<p style="color:#987484">
+There's a letter. Obviously there's a letter. You know me.
+</p>
+
+<button class="envelope" onclick="openLetter()" aria-label="Open the letter">♡</button>
+
+<div class="reveal" id="letter">
+<p>Happy five months, my Adii.</p>
+<p>
+I wish I could keep every little moment in a jar — the conversations,
+the laughter, the random things that only make sense to us.
+I know things are changing and distance means we have to be a little
+more intentional now. But I still want to know about your day,
+hear your voice, laugh at your nonsense and keep making memories,
+even if they're through a screen for now.
+</p>
+<p>
+Thank you for being in my life in a way that feels so completely yours.
+I hope we keep choosing each other with patience, honesty, effort
+and all the little things that make this ours.
+</p>
+<p>Five months isn't the whole story. It's just a page I really, really love.</p>
+<p style="font-style:italic;color:#9d536f;font-size:21px">
+I love you, Bhondu. ♡<br>— your Iram
+</p>
+</div>
+
+<div style="margin-top:45px">
+<button class="btn" onclick="finalSurprise()">one more button. trust me.</button>
+<div class="reveal" id="final" style="font-size:19px;font-style:italic">
+Congratulations, Adnan. Your five-month trial period has ended.
+Your girlfriend subscription has been renewed.
+Cancellation requests will be ignored. Love you. ♡
+</div>
+</div>
+</section>
+
+<footer>
+MADE WITH TOO MANY FEELINGS & A QUESTIONABLE AMOUNT OF PINK
+<br><br>
+IRAD · 19.06.2026 — 19.11.2026 ♡
+</footer>
+</main>
+
+<script>
+function enterSite(){
+document.getElementById('main').style.display='block';
+document.getElementById('start').style.display='none';
+window.scrollTo(0,0);
+hearts(12);
+}
+
+function hearts(n=5){
+const layer=document.getElementById('hearts');
+for(let i=0;i<n;i++){
+let h=document.createElement('span');
+h.className='heart';
+h.textContent=['♡','♥','✧'][Math.floor(Math.random()*3)];
+h.style.left=Math.random()*100+'%';
+h.style.fontSize=(12+Math.random()*18)+'px';
+h.style.animationDuration=(5+Math.random()*4)+'s';
+layer.appendChild(h);
+setTimeout(()=>h.remove(),9500);
+}
+}
+
+setInterval(()=>{
+if(document.visibilityState==='visible')hearts(1);
+},2300);
+
+function showMessages(){
+document.querySelectorAll('.bubble').forEach((b,i)=>{
+setTimeout(()=>b.classList.add('show'),i*650);
+});
+}
+
+function flip(el){
+const span=el.querySelector('span');
+span.hidden=!span.hidden;
+el.style.background=span.hidden?'#fff9f8':'#fbe6ed';
+hearts(2);
+}
+
+const qs=[
+{
+q:"What's my favourite kind of conversation?",
+a:["Deep talks at 2 AM","Random gossip with unnecessary details","Both. Obviously."],
+correct:2,
+good:"Correct. You have been paying attention. ♡",
+bad:"Incorrect. Please revise the girlfriend handbook."
+},
+{
+q:"Which nickname has survived all this time?",
+a:["Buddy","Bhondu","All of them. You know the drill."],
+correct:2,
+good:"Exactly. You are fluent in Iram-ese.",
+bad:"Excuse me? We need to talk about your preparation."
+},
+{
+q:"What's the actual secret to us making this work?",
+a:["Being perfect","Grand gestures every day","Honesty, effort, patience and the little things"],
+correct:2,
+good:"Look at you getting the important question right. ❤️",
+bad:"Cute answer, but try again. It's the little things."
+}
+];
+
+let qi=0;
+
+function renderQ(){
+document.getElementById('qcount').textContent='QUESTION 0'+(qi+1)+' / 03';
+document.getElementById('question').textContent=qs[qi].q;
+document.getElementById('answers').innerHTML=qs[qi].a.map((a,i)=>
+`<button class="answer" onclick="choose(${i})">${a}</button>`
+).join('');
+document.getElementById('feedback').textContent='';
+document.getElementById('next').style.display='none';
+}
+
+function choose(i){
+let q=qs[qi];
+document.querySelectorAll('.answer').forEach(b=>b.disabled=true);
+document.getElementById('feedback').textContent=
+i===q.correct?q.good:q.bad;
+document.getElementById('next').style.display='inline-block';
+hearts(3);
+}
+
+function nextQuestion(){
+qi++;
+if(qi<qs.length){
+renderQ();
+}else{
+document.getElementById('qcount').textContent='EXAM COMPLETED';
+document.getElementById('question').textContent='Your results are under review.';
+document.getElementById('answers').innerHTML='';
+document.getElementById('feedback').textContent=
+'Final grade: certified bhondu, but very loved. ♡';
+document.getElementById('next').style.display='none';
+}
+}
+
+function openLetter(){
+document.getElementById('letter').classList.toggle('show');
+hearts(8);
+}
+
+function finalSurprise(){
+document.getElementById('final').classList.toggle('show');
+hearts(15);
+}
+</script>
+</body>
+</html>
